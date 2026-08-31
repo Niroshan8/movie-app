@@ -1,29 +1,44 @@
-import "../css/Favourite.css"
-import { useMovieContext } from "../context/MovieContext";
-import MovieCard from "../components/MovieCard"
+import "../css/Favourite.css"; // favorite page style import කරයි
+import { useMovieContext } from "../context/MovieContext"; // favorite data access for context imports
+import MovieCard from "../components/MovieCard"; // movie card component import කරයි
 
 function Favourite() {
-    const { favourites } = useMovieContext();
+  // favorites page component initialize කරයි
+  const { favourites } = useMovieContext(); // context එකෙන් favorite movies list ලබා ගනී
 
-    if (favourites) {
-        return (
-            <div className="favorites">
-                <h2>Your Favourites</h2>
-                <div className="movies-grid">
-                    {favourites.map((movie) => (
-                        <MovieCard movie={movie} key={movie.id} />
-                    ))}
-                </div>
-            </div>
-        )
-    }
-
+  if (favourites) {
+    // favorites list empty නොවී තිබේ නම් render කරයි
     return (
-        <div className="favorites-empty">
-            <h2>No Favorite Movies Yet</h2>
-            <p>Start adding movies to your favorites and they will appear here!</p>
+      <div className="favorites">
+        {" "}
+        {/* favorites page wrapper */}
+        <h2>Your Favourites</h2> {/* page title */}
+        <div className="movies-grid">
+          {" "}
+          {/* favorite movie cards grid */}
+          {favourites.map(
+            (
+              movie, // each favorite movie iterate කරයි
+            ) => (
+              <MovieCard movie={movie} key={movie.id} /> // each favorite movie card render කරයි
+            ),
+          )}
         </div>
+      </div>
     );
+  }
+
+  return (
+    <div className="favorites-empty">
+      {" "}
+      {/* favorite list empty නම් view */}
+      <h2>No Favorite Movies Yet</h2> {/* empty state title */}
+      <p>
+        Start adding movies to your favorites and they will appear here!
+      </p>{" "}
+      {/* empty state instruction */}
+    </div>
+  );
 }
 
-export default Favourite
+export default Favourite;
