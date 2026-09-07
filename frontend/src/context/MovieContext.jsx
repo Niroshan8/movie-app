@@ -47,7 +47,7 @@ export const MovieProvider = ({ children }) => {
   return (
     <MovieContext.Provider value={value}>
       {" "}
-      // context provider එක return කරයි
+      {/* context provider එක return කරයි */}
       {children} {/* wrapped child components render කරයි */}
     </MovieContext.Provider>
   );
